@@ -16,6 +16,7 @@ void readFile(std::vector<std::string> &raw_data, std::ifstream &in_str) {
     }
 }
 
+
 void problem(std::vector<std::string> &input){
 
 	std::map<std::string, int> registers;
@@ -29,6 +30,8 @@ void problem(std::vector<std::string> &input){
 			std::string testReg = input[i + 3];
 			std::string op = input[i + 4];
 			std::string test = input[i + 5];
+
+
 
 			if (registers.find(targetReg) == registers.end())
 			{
