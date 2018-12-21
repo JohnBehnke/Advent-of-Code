@@ -1,53 +1,50 @@
 def partOne(license):
-
 	answer = 0
 	childCount = license.pop(0)
 	metaDataCount = license.pop(0)
 
 	for i in range(childCount):
-		sub, license = partOne(license)
+		sub = partOne(license)
 		answer += sub
 	for i in range(metaDataCount):
 		answer += license.pop(0)
 
-	return answer, license
+	return answer
 
 def partTwo(license):
 	childCount = license.pop(0)
 	metaDataCount = license.pop(0)
 
-	if childCount:
-		t = []
+	if childCount > 0:
+		childMetaData = []
 		for i in range(childCount):
-			subAns, license = partTwo(license)
-			t.append(subAns)
-		y = []
+			childMetaData.append(partTwo(license))
+		metaDataIndexes = []
 		for i in range(metaDataCount):
-			y.append(license.pop(0))
+			metaDataIndexes.append(license.pop(0))
 
 		ans = 0
-		for i in y:
-			combo = i - 1
-			if combo >=0 and combo < len(t):
-				ans += t[combo]
-		return ans, license
+		for index in metaDataIndexes:
+			combo = index - 1
+			if combo >=0 and combo < len(childMetaData):
+				ans += childMetaData[combo]
+		return ans
 	else:
 		ans = 0
 		for i in range(metaDataCount):
 			ans += license.pop(0)
-		return ans, license
+		return ans
 
 if __name__ == '__main__':
-	file = open('input.txt')
-	license = list(file.read().strip().split(' '))
-	license = map(int, license)
-	file.close()
-	answer, license1 = partOne(license)
-	file = open('input.txt')
-	license = list(file.read().strip().split(' '))
-	license = map(int, license)
-	file.close()
-	answer, license1 = partTwo(license)
-	print answer
 
-	#17037
+	file = open('input.txt')
+	license = list(file.read().strip().split(' '))
+	file.close()
+
+	license = map(int, license)
+
+	answer= partOne(license[:])
+	print 'The sum of all metadata entries is: %d'%(answer)
+
+	answer = partTwo(license[:])
+	print 'The value of the root node is: %d'%(answer)
