@@ -1,17 +1,21 @@
 import Foundation
 
+struct Instruction {
+  var numBlocks: Int
+  var from: Int
+  var to: Int
+}
 
+typealias Stacks = [Int: [Character]]
 
 @main
 public struct Day_05 {
-  func readFile(fileName: String) -> ([Int: [Character]], [(Int, Int, Int)]){
+  func readFile(fileName: String) -> (Stacks, [Instruction]){
     let pathToFile = FileManager.default.currentDirectoryPath + "/"
     let content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
-    var stacks: [Int: [Character]] = [:]
-    var moves: [(Int, Int, Int)] = []
+    var stacks: Stacks = [:]
+    var instructions: [Instruction] = []
     for line in content.split(separator: "\n") {
-   
-    
       if line.contains("[") {
         var count = 0
         var currentBox = 0
@@ -21,7 +25,6 @@ public struct Day_05 {
               stacks[currentBox] = [char]
             } else {
               stacks[currentBox ]?.append(char)
-          
             }
           }
           if count % 4 == 0 {
@@ -31,59 +34,65 @@ public struct Day_05 {
         }
       
       } else if line.contains("move") {
-        var line2 = String(line).replacingOccurrences(of: "move ", with: "").replacingOccurrences(of: " from ", with: ",").replacingOccurrences(of: " to ", with: ",").split(separator: ",")
-        
-        let foo = (Int(line2.removeFirst())!, Int(line2.removeFirst())!, Int(line2.removeFirst())!)
-        moves.append(foo)
+        var parsedInstructionLine = String(line)
+          .replacingOccurrences(of: "move ", with: "")
+          .replacingOccurrences(of: " from ", with: ",")
+          .replacingOccurrences(of: " to ", with: ",")
+          .split(separator: ",")
+        let newInstruction = Instruction(
+          numBlocks: Int(parsedInstructionLine.removeFirst())!,
+          from: Int(parsedInstructionLine.removeFirst())!,
+          to: Int(parsedInstructionLine.removeFirst())!
+        )
+        instructions.append(newInstruction)
       }
     }
     for key in stacks.keys {
       stacks[key]!.reverse()
     }
-    return (stacks, moves)
+    return (stacks, instructions)
 
   }
   
   
-  func problem1(stacks: [Int: [Character]], moves: [(Int, Int, Int)]) -> String{
+  func problem1(stacks: [Int: [Character]], instructions: [Instruction]) -> String{
     var localStacks = stacks
 
-    for move in moves {
-      for _ in 0..<move.0 {
-        localStacks[move.2]!.append(localStacks[move.1]!.removeLast())
-        
+    for instruction in instructions {
+      for _ in 0..<instruction.numBlocks {
+        localStacks[instruction.to]!.append(localStacks[instruction.from]!.removeLast())
       }
     }
    
-    var ret = ""
+    var returnString = ""
     for i in 1...localStacks.keys.count {
-      ret += String(localStacks[i]!.removeLast())
+      returnString += String(localStacks[i]!.removeLast())
     }
-    return ret
+    return returnString
   }
   
-  func problem2(stacks: [Int: [Character]], moves: [(Int, Int, Int)]) -> String{
+  func problem2(stacks: Stacks, instructions: [Instruction]) -> String{
     var localStacks = stacks
     
-    for move in moves {
-      var temp: [Character] = []
-      for _ in 0..<move.0 {
-        temp.append(localStacks[move.1]!.removeLast())
+    for instruction in instructions {
+      var blocksToMove: [Character] = []
+      for _ in 0..<instruction.numBlocks {
+        blocksToMove.append(localStacks[instruction.from]!.removeLast())
       }
-      localStacks[move.2]!.append(contentsOf: temp.reversed())
+      localStacks[instruction.to]!.append(contentsOf: blocksToMove.reversed())
     }
     
-    var ret = ""
+    var returnString = ""
     for i in 1...localStacks.keys.count {
-      ret += String(localStacks[i]!.removeLast())
+      returnString += String(localStacks[i]!.removeLast())
     }
-    return ret
+    return returnString
   }
   
   public static func main() {
     let day5 = Day_05()
     let state = day5.readFile(fileName: "input.txt")
-    print(day5.problem1(stacks: state.0, moves: state.1))
-    print(day5.problem2(stacks: state.0, moves: state.1))
+    print(day5.problem1(stacks: state.0, instructions: state.1))
+    print(day5.problem2(stacks: state.0, instructions: state.1))
   }
 }
