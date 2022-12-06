@@ -2,10 +2,10 @@ import XCTest
 @testable import Day_02
 
 final class Day_02Tests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Day_02().text, "Hello, World!")
+    func test() throws {
+      let day2 = Day_02()
+      let input = day2.readFile(fileName: "test_input.txt")
+      XCTAssertEqual(day2.problem1(rounds: input),15)
+      XCTAssertEqual(day2.problem2(rounds: input),12)
     }
 }

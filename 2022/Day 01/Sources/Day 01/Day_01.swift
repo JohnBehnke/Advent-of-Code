@@ -18,17 +18,17 @@ public struct Day_01 {
             }
            
           }
+          allCalorieCounts.append(individualCalorieCount)
+          individualCalorieCount.removeAll()
           return allCalorieCounts
     }
     
     func problem1(input: [[Int]]) -> Int {
-      
       let result = input.map {$0.reduce(0) {$0 + $1}}.max()
       return result ?? 0
     }
     
     func problem2(input: [[Int]]) -> Int {
-      
       let result = input.map {$0.reduce(0) {$0 + $1}}.sorted()
       return result.reversed()[0..<3].reduce(0){$0 + $1}
     }
