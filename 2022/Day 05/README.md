@@ -1,3 +1,3 @@
 # Day 05
 
-A description of this package.
+Solution to [Advent of Code 2022, Day 5](https://adventofcode.com/2022/day/5)

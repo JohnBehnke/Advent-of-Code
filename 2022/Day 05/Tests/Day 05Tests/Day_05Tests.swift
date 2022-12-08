@@ -2,10 +2,11 @@ import XCTest
 @testable import Day_05
 
 final class Day_05Tests: XCTestCase {
-    func test() throws {
-       let day5 = Day_05()
-       let state = day5.readFile(fileName: "test_input.txt")
-       XCTAssertEqual(day5.problem1(stacks: state.0, instructions: state.1),"CMZ")
-       XCTAssertEqual(day5.problem2(stacks: state.0, instructions: state.1),"MCD")
-    }
+  let state = Day_05().readFile(fileName: "test_input.txt")
+  func testProblem1() throws {
+    XCTAssertEqual(Day_05().problem1(stacks: state.0, instructions: state.1), "CMZ")
+  }
+  func testProblem2() throws {
+    XCTAssertEqual(Day_05().problem2(stacks: state.0, instructions: state.1), "MCD")
+  }
 }

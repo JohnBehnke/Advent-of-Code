@@ -1,3 +1,3 @@
 # Day 02
 
-A description of this package.
+Solution to [Advent of Code 2022, Day 2](https://adventofcode.com/2022/day/2)
