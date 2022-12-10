@@ -2,7 +2,7 @@ import XCTest
 @testable import Day_01
 
 final class Day_01Tests: XCTestCase {
-  let input = Day_01().readFile(fileName: "test_input.txt")
+  let input = Day_01().readFile(fileName: "sample.txt")
   func testProblem1() throws {
     XCTAssertEqual(Day_01().problem1(input: input),24000)
   }

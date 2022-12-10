@@ -2,7 +2,7 @@ import XCTest
 @testable import Day_07
 
 final class Day_07Tests: XCTestCase {
-  let rootDirectory = Day_07().parse(fileName: "test_input.txt")
+  let rootDirectory = Day_07().parse(fileName: "sample.txt")
   func testProblem1() throws {
     XCTAssertEqual(Day_07().problem1(directory: rootDirectory), 95437)
   }
