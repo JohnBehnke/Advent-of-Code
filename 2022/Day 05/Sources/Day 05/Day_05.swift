@@ -10,7 +10,7 @@ typealias Stacks = [Int: [Character]]
 
 @main
 public struct Day_05 {
-  func readFile(fileName: String) -> (Stacks, [Instruction]){
+  static func readFile(fileName: String) -> (Stacks, [Instruction]){
     let pathToFile = FileManager.default.currentDirectoryPath + "/"
     let content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
     var stacks: Stacks = [:]
@@ -55,7 +55,7 @@ public struct Day_05 {
   }
   
   
-  func problem1(stacks: [Int: [Character]], instructions: [Instruction]) -> String{
+  static func problem1(stacks: [Int: [Character]], instructions: [Instruction]) -> String{
     var localStacks = stacks
 
     for instruction in instructions {
@@ -71,7 +71,7 @@ public struct Day_05 {
     return returnString
   }
   
-  func problem2(stacks: Stacks, instructions: [Instruction]) -> String{
+  static func problem2(stacks: Stacks, instructions: [Instruction]) -> String{
     var localStacks = stacks
     
     for instruction in instructions {
@@ -90,9 +90,8 @@ public struct Day_05 {
   }
   
   public static func main() {
-    let day5 = Day_05()
-    let state = day5.readFile(fileName: "input.txt")
-    print(day5.problem1(stacks: state.0, instructions: state.1))
-    print(day5.problem2(stacks: state.0, instructions: state.1))
+    let state = self.readFile(fileName: "input.txt")
+    print(self.problem1(stacks: state.0, instructions: state.1))
+    print(self.problem2(stacks: state.0, instructions: state.1))
   }
 }

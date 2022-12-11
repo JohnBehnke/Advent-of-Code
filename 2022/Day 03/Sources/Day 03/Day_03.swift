@@ -1,26 +1,17 @@
 import Algorithms
 import Foundation
 
-extension Array {
-  func chunked(into size: Int) -> [[Element]] {
-      return stride(from: 0, to: count, by: size).map {
-          Array(self[$0 ..< Swift.min($0 + size, count)])
-      }
-  }
-}
-
-
 @main
 public struct Day_03 {
-    func readFile(fileName: String) -> [String]{
+    static func readFile(fileName: String) -> [String]{
       let pathToFile = FileManager.default.currentDirectoryPath + "/"
       let content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
       return Array(content.split(separator: "\n").map{String($0)})
     }
     
-    let alphabet = Array("_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    static let alphabet = Array("_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
     
-    func problem1(rucksacks: [String]) -> Int {
+    static func problem1(rucksacks: [String]) -> Int {
       var sum = 0
       for rucksack in rucksacks {
         let l = rucksack[..<rucksack.index(rucksack.startIndex, offsetBy: rucksack.count / 2)]
@@ -31,7 +22,7 @@ public struct Day_03 {
       return sum
     }
     
-    func problem2(rucksacks: [String]) -> Int {
+    static func problem2(rucksacks: [String]) -> Int {
       var sum = 0
       for collection in rucksacks.chunks(ofCount: 3).map({ Array($0) }) {
         let one = Set(collection[0])
@@ -45,9 +36,8 @@ public struct Day_03 {
     }
 
     public static func main() {
-    let day3 = Day_03()
-       let input = day3.readFile(fileName: "input.txt")
-       print(day3.problem1(rucksacks: input))
-       print(day3.problem2(rucksacks: input))
+       let input = self.readFile(fileName: "input.txt")
+       print(self.problem1(rucksacks: input))
+       print(self.problem2(rucksacks: input))
     }
 }

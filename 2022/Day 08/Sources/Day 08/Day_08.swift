@@ -25,7 +25,7 @@ class Tree: CustomStringConvertible, Comparable {
 @main
 public struct Day_08 {
   
-  func rotate(forest: Forest) -> Forest {
+  static func rotate(forest: Forest) -> Forest {
     var columns: [[Tree]] = []
     for x in 0..<forest.count {
       var column: [Tree] = []
@@ -38,7 +38,7 @@ public struct Day_08 {
     return columns
   }
   
-  func parse(fileName: String) -> Forest {
+  static func parse(fileName: String) -> Forest {
     let pathToFile = FileManager.default.currentDirectoryPath + "/"
     let content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
     let lines = content.split(separator: "\n").map { String($0) }
@@ -62,7 +62,7 @@ public struct Day_08 {
     return trees
   }
   
-  func problem1(forest: Forest) -> Int {
+  static func problem1(forest: Forest) -> Int {
     let rotatedForest = rotate(forest: forest)
     for x in 1..<forest.count - 1{
       for y in 1..<forest[x].count - 1{
@@ -82,7 +82,7 @@ public struct Day_08 {
       .reduce(0) { $0 + ($1.isVisisbleFromAnEdge ? 1 : 0)}
   }
   
-  func problem2(forest: Forest) -> Int {
+  static func problem2(forest: Forest) -> Int {
     
     let rotatedForest = rotate(forest: forest)
     for x in 1..<forest.count - 1{
@@ -125,9 +125,8 @@ public struct Day_08 {
       .reduce([], +).max(by: {$0.scenicScore < $1.scenicScore})!.scenicScore
   }
   public static func main() {
-    let day8 = Day_08()
-    let forest = day8.parse(fileName: "input.txt")
-    print(day8.problem1(forest: forest))
-    print(day8.problem2(forest: forest))
+    let forest = self.parse(fileName: "input.txt")
+    print(self.problem1(forest: forest))
+    print(self.problem2(forest: forest))
   }
 }

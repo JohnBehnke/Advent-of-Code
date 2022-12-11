@@ -41,7 +41,7 @@ class Directory {
 
 @main
 public struct Day_07 {
-  func parse(fileName: String) -> Directory{
+  static func parse(fileName: String) -> Directory{
     let pathToFile = FileManager.default.currentDirectoryPath + "/"
     let content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
     let lines = content.split(separator: "\n").map { String($0) }
@@ -84,14 +84,14 @@ public struct Day_07 {
 
     return currentWorkingDirectory
   }
-  func problem1(directory: Directory) -> Int {
+  static func problem1(directory: Directory) -> Int {
     if directory.subDirectories.isEmpty {
       return directory.size <= 100000 ? directory.size : 0
     }
     return directory.subDirectories.reduce(0) { $0 +  problem1(directory: $1)}  +  (directory.size <= 100000 ? directory.size : 0)
   }
   
-  func problem2(directory: Directory, target: Int) -> Int {
+  static func problem2(directory: Directory, target: Int) -> Int {
     
     if directory.subDirectories.isEmpty {
       return directory.size
@@ -104,10 +104,8 @@ public struct Day_07 {
   }
   
   public static func main() {
-    
-    let day = Day_07()
-    let rootDirectory = day.parse(fileName: "input.txt")
-    print(day.problem1(directory: rootDirectory))
-    print(day.problem2(directory: rootDirectory, target: 30000000 - (70000000 - rootDirectory.size))) // 647391 40528671
+    let rootDirectory = self.parse(fileName: "input.txt")
+    print(self.problem1(directory: rootDirectory))
+    print(self.problem2(directory: rootDirectory, target: 30000000 - (70000000 - rootDirectory.size))) // 647391 40528671
   }
 }

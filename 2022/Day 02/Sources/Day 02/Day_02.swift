@@ -48,7 +48,7 @@ func playRound(playerMove: String, opponentMove: String) -> Outcome {
 
 @main
 public struct Day_02 {
-   func readFile(fileName:String) -> [(String, String)]{
+   static func readFile(fileName:String) -> [(String, String)]{
      
         let pathToFile = FileManager.default.currentDirectoryPath + "/"
          let raw_content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
@@ -62,7 +62,7 @@ public struct Day_02 {
       
      }
    
-   func problem1(rounds: [(String, String)]) -> Int {
+   static func problem1(rounds: [(String, String)]) -> Int {
      
      return rounds.reduce(0) { partialResult, round in
        let playerMoveValue = moveToValue(move: round.1)
@@ -79,8 +79,7 @@ public struct Day_02 {
      }
    }
    
-   func problem2(rounds: [(String, String)]) -> Int {
-     
+   static func problem2(rounds: [(String, String)]) -> Int {
      return rounds.reduce(0) { partialResult, round in
        switch round.1 {
          case "X": //lose
@@ -124,10 +123,9 @@ public struct Day_02 {
    }
 
     public static func main() {
-      let day2 = Day_02()
-      let result = day2.readFile(fileName: "input.txt")
-      print(day2.problem1(rounds: result))
-      print(day2.problem2(rounds: result))
+      let result = self.readFile(fileName: "input.txt")
+      print(self.problem1(rounds: result))
+      print(self.problem2(rounds: result))
 
     }
 }

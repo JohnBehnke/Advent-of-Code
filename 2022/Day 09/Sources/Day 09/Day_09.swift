@@ -101,14 +101,14 @@ struct Knot {
 
 @main
 public struct Day_09 {
-  func parse(fileName: String) -> [Move] {
+  static func parse(fileName: String) -> [Move] {
     let pathToFile = FileManager.default.currentDirectoryPath + "/"
     let content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
     let lines = content.split(separator: "\n")
     return lines.map { Move(distance: Int($0.split(separator: " ").last!)!, direction: Direction(direction: String($0.split(separator: " ").first!))!) }
   }
   
-  func getTailPositionCountsRopeOf(length: Int, for moves: [Move]) -> Int {
+  static func getTailPositionCountsRopeOf(length: Int, for moves: [Move]) -> Int {
     if length < 2 { return 0 }
     var rope = Array(repeating: Knot(), count: length)
     let tail = rope.last!
@@ -154,9 +154,8 @@ public struct Day_09 {
   
   
   public static func main() {
-    let day9 = Day_09()
-    let moves = day9.parse(fileName: "test_input.txt")
-    print(day9.getTailPositionCountsRopeOf(length: 2, for: moves)) //6236
-    print(day9.getTailPositionCountsRopeOf(length: 10, for: moves)) //2449
+    let moves = self.parse(fileName: "test_input.txt")
+    print(self.getTailPositionCountsRopeOf(length: 2, for: moves)) //6236
+    print(self.getTailPositionCountsRopeOf(length: 10, for: moves)) //2449
   }
 }

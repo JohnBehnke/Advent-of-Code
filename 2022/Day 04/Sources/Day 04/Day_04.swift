@@ -1,7 +1,7 @@
 import Foundation
 @main
 public struct Day_04 {
-    func readFile(fileName: String) -> [(String, String)]{
+    static func readFile(fileName: String) -> [(String, String)]{
       let pathToFile = FileManager.default.currentDirectoryPath + "/"
       let content = try! String(contentsOfFile: pathToFile + fileName, encoding: .utf8)
       var assignments: [(String, String)] = []
@@ -13,7 +13,7 @@ public struct Day_04 {
     }
     
     
-    func problem1(assignments: [(String, String)]) -> Int {
+    static func problem1(assignments: [(String, String)]) -> Int {
       var sum = 0
       for assignment in assignments {
         let split1Line = assignment.0.split(separator: "-")
@@ -29,7 +29,7 @@ public struct Day_04 {
       return sum
     }
     
-    func problem2(assignments: [(String, String)]) -> Int {
+    static func problem2(assignments: [(String, String)]) -> Int {
       var sum = 0
       for assignment in assignments {
         let split1Line = assignment.0.split(separator: "-")
@@ -46,9 +46,8 @@ public struct Day_04 {
     }
 
     public static func main() {
-        let day4 = Day_04() 
-        let input = day4.readFile(fileName: "input.txt")
-        print(day4.problem1(assignments: input))
-        print(day4.problem2(assignments: input))
+        let input = self.readFile(fileName: "input.txt")
+        print(self.problem1(assignments: input))
+        print(self.problem2(assignments: input))
     }
 }
