@@ -36,8 +36,8 @@ public struct Day_03 {
     }
 
     public static func main() {
-       let input = self.readFile(fileName: "input.txt")
-       print(self.problem1(rucksacks: input))
-       print(self.problem2(rucksacks: input))
+      let input = readFile(fileName: "input.txt")
+      print(problem1(rucksacks: input))
+      print(problem2(rucksacks: input))
     }
 }

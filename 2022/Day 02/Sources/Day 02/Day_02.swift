@@ -123,9 +123,9 @@ public struct Day_02 {
    }
 
     public static func main() {
-      let result = self.readFile(fileName: "input.txt")
-      print(self.problem1(rounds: result))
-      print(self.problem2(rounds: result))
+      let result = readFile(fileName: "input.txt")
+      print(problem1(rounds: result))
+      print(problem2(rounds: result))
 
     }
 }

@@ -104,8 +104,8 @@ public struct Day_07 {
   }
   
   public static func main() {
-    let rootDirectory = self.parse(fileName: "input.txt")
-    print(self.problem1(directory: rootDirectory))
-    print(self.problem2(directory: rootDirectory, target: 30000000 - (70000000 - rootDirectory.size))) // 647391 40528671
+    let rootDirectory = parse(fileName: "input.txt")
+    print(problem1(directory: rootDirectory))
+    print(problem2(directory: rootDirectory, target: 30000000 - (70000000 - rootDirectory.size))) // 647391 40528671
   }
 }

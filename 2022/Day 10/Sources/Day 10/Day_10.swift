@@ -113,8 +113,8 @@ public struct Day_10 {
     
   }
   public static func main() {
-    let program = self.parse(fileName: "input.txt")
-    print(self.problem1(program: program))
-    self.problem2(program: program)
+    let program = parse(fileName: "input.txt")
+    print(problem1(program: program))
+    problem2(program: program)
   }
 }

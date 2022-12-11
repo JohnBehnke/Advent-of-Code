@@ -125,8 +125,8 @@ public struct Day_08 {
       .reduce([], +).max(by: {$0.scenicScore < $1.scenicScore})!.scenicScore
   }
   public static func main() {
-    let forest = self.parse(fileName: "input.txt")
-    print(self.problem1(forest: forest))
-    print(self.problem2(forest: forest))
+    let forest = parse(fileName: "input.txt")
+    print(problem1(forest: forest))
+    print(problem2(forest: forest))
   }
 }

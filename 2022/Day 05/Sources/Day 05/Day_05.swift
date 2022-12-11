@@ -90,8 +90,8 @@ public struct Day_05 {
   }
   
   public static func main() {
-    let state = self.readFile(fileName: "input.txt")
-    print(self.problem1(stacks: state.0, instructions: state.1))
-    print(self.problem2(stacks: state.0, instructions: state.1))
+    let state = readFile(fileName: "input.txt")
+    print(problem1(stacks: state.0, instructions: state.1))
+    print(problem2(stacks: state.0, instructions: state.1))
   }
 }

@@ -155,7 +155,7 @@ public struct Day_09 {
   
   public static func main() {
     let moves = self.parse(fileName: "test_input.txt")
-    print(self.getTailPositionCountsRopeOf(length: 2, for: moves)) //6236
-    print(self.getTailPositionCountsRopeOf(length: 10, for: moves)) //2449
+   print(getTailPositionCountsRopeOf(length: 2, for: moves)) //6236
+   print(getTailPositionCountsRopeOf(length: 10, for: moves)) //2449
   }
 }
